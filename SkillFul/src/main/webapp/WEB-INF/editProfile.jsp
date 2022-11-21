@@ -10,11 +10,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Create Tutor Profile</title>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form:form action="/tutor/profile/create" method="post" modelAttribute="TutorProfile">
+	<div>
+			<form:form action="/tutor/profile/${TutorProfile.id}/edit" method="post" modelAttribute="TutorProfile">
+			<input type="hidden" name="_method" value="put">
 		<div>
 			<form:label path="location" class="form-label">Your Location</form:label>
 			<form:select path="location" class="form-select">
@@ -39,7 +45,31 @@
 	        <form:textarea path="lessonDescription" class="form-control"/>
 		</div>
 		<form:input type="hidden" path="tutor" value="${tutorId}"/>
-		<input type="submit" value="Create Profile"/>
-	</form:form>
+		<input type="submit" value="Update Profile"/>
+	</form:form>	
+		<table>
+			<tr>
+				<th>Subject</th>
+				<th>Level</th>
+				<th>Hourly Rate</th>
+				<th>Action</th>
+			</tr>
+			<c:forEach var="subject" items="${profileSubjects}">
+			<tr>
+				<td>${subject.subject.title}</td>
+				<td>${subject.level}</td>
+				<td>${subject.hourlyRate} NIS</td>
+				<td>
+					<a href="/tutor/profile/${TutorProfile.id}/subject/${subject.id}/edit">Edit</a>
+					<form:form action="/tutor/${TutorProfile.id}/subject" method="post">
+						<input type="hidden" name="_method" value="delete"/>
+						<input type="hidden" name="subjectId" value="${subject.id}"/>
+						<input type="submit" value="Delete">
+					</form:form>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</div>
 </body>
 </html>

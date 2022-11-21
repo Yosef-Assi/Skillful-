@@ -25,7 +25,9 @@
 			<p>Online lessons</p>
 		</c:if>
 		<h3>About <c:out value="${tutorProfile.tutor.firstName}"></c:out></h3>
-		<p><c:out value="${tutorProfile.description}"></c:out></p>
+		<p><c:out value="${tutorProfile.tutorDescription}"></c:out></p>
+		<h3>About the lesson</h3>
+		<p><c:out value="${tutorProfile.lessonDescription}"></c:out></p>
 		<p>Member since: <fmt:formatDate type="both"  pattern="dd MMMMM, yyyy" value="${tutorProfile.createdAt}"/></p>
 		<table>
 			<tr>
