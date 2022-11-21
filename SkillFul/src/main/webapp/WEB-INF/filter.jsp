@@ -1,8 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. --> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- Formatting (dates) --> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!-- form:form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- for rendering errors on PUT routes -->
+<%@ page isErrorPage="true" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,17 +27,51 @@
     <div class="container mt-3">
   <h2>Filterable Table</h2>
   
-  	<form action="/search" method="POST">
-  	   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			 <select class="form-select form-select-sm" name="filter">
-					  <option selected>Open this select menu</option>
-					  <option value="level">level</option>
-					  <option value="skill">skill</option>
-					  <option value="location">location</option>
-			</select>
-			<input class="form-control" id="myInput" type="text" placeholder="Search.." name="search">
-			<input type="submit" value="Search" class="btn btn-primary">
-		</form>
+  		<form action="/search" method="post">
+        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	
+		<table>
+			<tr>
+				<td>
+					<label id="name">search</label>
+					<input name="search" class="form-control"/>
+				</td>
+			</tr>
+		     <tr>
+                    <td><p>Location</p></td>
+						<td>	<select name="location" style="width:100%; margin-left:-100%;">
+										<option value="None">None</option>
+						  
+							          	<option value="1">Ramallah</option>
+									    <option value="2">Nablus</option>
+
+							        </select> 
+						</td>                    
+                </tr>
+                
+                  <tr>
+                    <td><p>Level</p></td>
+						<td>	<select name="level" style="width:100%; margin-left:-100%;">
+										<option value="All">All</option>
+						  
+							          	<option value="1">Beginner</option>
+									    <option value="2">Intermediate</option>
+									 	<option value="3">Advance</option>
+									    
+
+							        </select> 
+						</td>                    
+                </tr>
+				
+			<tr>
+				<td>
+					<input type="submit" class="form-control" value="Send">
+				</td>
+			</tr>
+		
+		</table>
+
+</form>
   
   <br>
  
