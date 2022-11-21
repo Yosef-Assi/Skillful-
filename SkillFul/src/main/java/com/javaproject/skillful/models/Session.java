@@ -36,8 +36,8 @@ public class Session {
 	private Boolean online;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "student_id")
+	private Student student;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -65,20 +65,20 @@ public class Session {
     public Session() {
     	
 	}
-	public Session(Date startDate, Date endDate, Location location, Boolean online, User user) {
+	public Session(Date startDate, Date endDate, Location location, Boolean online, Student student) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.location = location;
 		this.online = online;
-		this.user = user;
+		this.student = student;
 	}
 	
 	
-	public User getUser() {
-		return user;
+	public Student getStudent() {
+		return student;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 	public Long getId() {
 		return id;
