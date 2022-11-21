@@ -44,7 +44,16 @@
 						  
 							          	<option value="1">Ramallah</option>
 									    <option value="2">Nablus</option>
-
+										<option value="3">Jenin</option>
+										<option value="4">Hebron</option>
+										<option value="5">Tulkarm</option>
+										<option value="6">Bethlehem</option>
+										<option value="7">Qalqeliah</option>
+										<option value="8">Tubas</option>
+										<option value="9">Jericho</option>
+										<option value="10">Jerusalem</option>
+										<option value="11">Gaza</option>
+										
 							        </select> 
 						</td>                    
                 </tr>
@@ -54,10 +63,10 @@
 						<td>	<select name="level" style="width:100%; margin-left:-100%;">
 										<option value="All">All</option>
 						  
-							          	<option value="1">Beginner</option>
-									    <option value="2">Intermediate</option>
-									 	<option value="3">Advance</option>
-									    
+							          	<option value="0">Beginner</option>
+									    <option value="1">Intermediate</option>
+									 	<option value="2">Advance</option>
+									    <option value="3">All Level</option>
 
 							        </select> 
 						</td>                    
@@ -85,7 +94,7 @@
     <tbody>	
         <c:forEach var="skill" items="${skills}">
     	<tr>
-        <td><c:out value="${skill[0]}"></c:out> </td>        
+        <td><a href="/tutor/profile/${skill[2] }/${skill[3]}"><c:out value="${skill[0]}"></c:out></a></td> 
         <td><c:out value="${skill[1]}"></c:out> </td>        
        
         </tr>
