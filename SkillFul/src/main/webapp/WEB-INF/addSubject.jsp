@@ -44,6 +44,7 @@
 	   		<form:input type="hidden" path="tutorProfile" value="${tutorProfile.id}"/>
 			<input type="submit" value="Submit"/>
 		</form:form>
+		<a href="/tutor/profile/${tutorProfile.id}">Done</a>
 	</div>
 </body>
 </html>

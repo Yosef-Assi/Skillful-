@@ -79,11 +79,12 @@ public class TutorProfileController {
 	// adds subject to profile
 	@PostMapping("/tutor/profile/{profileId}/subjects")
 	public String addSubject(
+			@PathVariable("profileId") Long profileId,
 			@ModelAttribute("TutorProfileSubject") TutorProfileSubjects profileSubject,
 			HttpSession session,
 			Model model) {
 		profileService.addSubject(profileSubject);
-		return "addSubject.jsp";
+		return "redirect:/tutor/profile/"+profileId+"/subjects";
 	}
 	
 	// renders tutor profile
@@ -92,6 +93,8 @@ public class TutorProfileController {
 			@PathVariable("id") Long profileId,
 			Model model,
 			HttpSession session) {
+		TutorProfile tutorProfile = profileService.findProfileById(profileId);
+		model.addAttribute("profileSubjects", profileService.tutorSubjects(tutorProfile));
 		model.addAttribute("tutorProfile", profileService.findProfileById(profileId));
 		return "tutorProfile.jsp";
 	}

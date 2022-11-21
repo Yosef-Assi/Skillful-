@@ -33,7 +33,7 @@
 	        <form:errors path="description" class="text-danger small"/>
 	        <form:textarea path="description" class="form-control"/>
 		</div>
-		<input type="hidden" path="tutor" value="${tutorId}"/>
+		<form:input type="hidden" path="tutor" value="${tutorId}"/>
 		<input type="submit" value="Create Profile"/>
 	</form:form>
 </body>

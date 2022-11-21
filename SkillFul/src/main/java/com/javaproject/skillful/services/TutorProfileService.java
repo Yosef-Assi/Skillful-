@@ -1,5 +1,6 @@
 package com.javaproject.skillful.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,13 @@ public class TutorProfileService {
 		}
 	}
 	
-	
 	// adds skill to profile
 	public TutorProfileSubjects addSubject(TutorProfileSubjects s) {
 		return profileSubjectRepo.save(s);
 	}
-
+	
+	// returns subjects this user teaches
+	public List<TutorProfileSubjects> tutorSubjects(TutorProfile tp){
+		return profileSubjectRepo.findAllByTutorProfile(tp);
+	}
 }
