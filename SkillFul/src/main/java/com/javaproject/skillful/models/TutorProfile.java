@@ -33,10 +33,13 @@ public class TutorProfile {
 	
 	private Boolean online = false;
 	
-	
-	@NotEmpty(message = "Please include a description about your tutoring services")
-	@Size(min= 250, message = "description must be at least 250 characters")
-	private String description;
+	@NotEmpty(message = "Tell us about yourself!")
+	@Size(min=100, max= 255, message = "description must be between 100 and 255 characters")
+	private String tutorDescription;
+
+	@NotEmpty(message = "Tell us about your teaching style and lessons!")
+	@Size(min=100, max= 255, message = "description must be between 100 and 255 characters")
+	private String lessonDescription;
 	
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -84,12 +87,20 @@ public class TutorProfile {
 		this.online = online;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getTutorDescription() {
+		return tutorDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTutorDescription(String tutorDescription) {
+		this.tutorDescription = tutorDescription;
+	}
+
+	public String getLessonDescription() {
+		return lessonDescription;
+	}
+
+	public void setLessonDescription(String lessonDescription) {
+		this.lessonDescription = lessonDescription;
 	}
 
 	public Date getCreatedAt() {

@@ -7,16 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaproject.skillful.models.Level;
 import com.javaproject.skillful.models.Location;
 import com.javaproject.skillful.models.TutorProfile;
 import com.javaproject.skillful.models.TutorProfileSubjects;
+import com.javaproject.skillful.services.ProfileSubjectService;
 import com.javaproject.skillful.services.SubjectService;
 import com.javaproject.skillful.services.TutorProfileService;
 import com.javaproject.skillful.services.TutorService;
@@ -32,6 +35,9 @@ public class TutorProfileController {
 	
 	@Autowired
 	SubjectService subjectService;
+	
+	@Autowired
+	ProfileSubjectService profileSubjectService;
 	
 	// add authorization to different pages !!!
 	
@@ -83,7 +89,7 @@ public class TutorProfileController {
 			@ModelAttribute("TutorProfileSubject") TutorProfileSubjects profileSubject,
 			HttpSession session,
 			Model model) {
-		profileService.addSubject(profileSubject);
+		profileSubjectService.addSubject(profileSubject);
 		return "redirect:/tutor/profile/"+profileId+"/subjects";
 	}
 	
@@ -94,7 +100,7 @@ public class TutorProfileController {
 			Model model,
 			HttpSession session) {
 		TutorProfile tutorProfile = profileService.findProfileById(profileId);
-		model.addAttribute("profileSubjects", profileService.tutorSubjects(tutorProfile));
+		model.addAttribute("profileSubjects", profileSubjectService.tutorSubjects(tutorProfile));
 		model.addAttribute("tutorProfile", profileService.findProfileById(profileId));
 		return "tutorProfile.jsp";
 	}
@@ -105,7 +111,9 @@ public class TutorProfileController {
 			@PathVariable("id") Long profileId,
 			Model model,
 			HttpSession session) {
-		model.addAttribute("tutorProfile", profileService.findProfileById(profileId));
+		TutorProfile tutorProfile = profileService.findProfileById(profileId);
+		model.addAttribute("TutorProfile", tutorProfile);
+		model.addAttribute("profileSubjects", profileSubjectService.tutorSubjects(tutorProfile));
 		return "editProfile.jsp";
 	}
 	
@@ -123,6 +131,43 @@ public class TutorProfileController {
 			return "redirect:/tutor/profile/"+profileId;
 		}
 	}
+	
+	// deletes subject from tutor profile
+	@DeleteMapping("/tutor/{profileId}/subject")
+	public String removeSubject(
+			HttpSession session,
+			@PathVariable("profileId") Long profileId,
+			@RequestParam("subjectId") Long subjectId) {
+		
+		profileSubjectService.deleteprofileSubject(subjectId);
+		return "redirect:/tutor/profile/"+profileId+"/edit";
+	}
+	
+	// edit subject
+	@GetMapping("/tutor/profile/{profileId}/subject/{subjectId}/edit")
+	public String editSubject(
+			@PathVariable("subjectId") Long subjectId,
+			@PathVariable("profileId") Long profileId,
+			HttpSession session,
+			Model model) {
+		TutorProfileSubjects profileSubject = profileSubjectService.findProfileSubject(subjectId);
+		model.addAttribute("TutorProfileSubject",profileSubject);
+		TutorProfile thisProfile = profileService.findProfileById(profileId);
+		model.addAttribute("tutorProfile", thisProfile);
+		model.addAttribute("subjects", subjectService.allSubjects());
+		return "editProfileSubject.jsp";
+	}
+	
+	// updates subject
+	@PutMapping("/tutor/profile/{profileId}/subject/{subjectId}/edit")
+	public String updateSubject(
+			@PathVariable("subjectId") Long subjectId,
+			@PathVariable("profileId") Long profileId,
+			@Valid @ModelAttribute("TutorProfileSubject") TutorProfileSubjects profileSubject) {
+			profileSubjectService.updateprofileSubject(profileSubject);
+			return "redirect:/tutor/profile/"+profileId+"/edit";
+	}
+	
 	
 }
 

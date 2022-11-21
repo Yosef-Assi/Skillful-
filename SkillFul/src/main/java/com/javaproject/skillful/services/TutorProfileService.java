@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaproject.skillful.models.Subject;
 import com.javaproject.skillful.models.TutorProfile;
-import com.javaproject.skillful.models.TutorProfileSubjects;
 import com.javaproject.skillful.repositories.TutorProfileRepository;
 import com.javaproject.skillful.repositories.TutorProfileSubjectRepository;
 
@@ -27,8 +27,15 @@ public class TutorProfileService {
 	
 	// updates profile
 	public TutorProfile updateProfile(TutorProfile p) {
-		return profileRepo.save(p);
-		
+		Long id = p.getId();
+		Optional<TutorProfile> optionalProfile = profileRepo.findById(id);
+		if (optionalProfile.isPresent()) {
+			TutorProfile profile = optionalProfile.get();
+			List<Subject> mySubjects = profile.getSubjects();
+			p.setSubjects(mySubjects);
+			return profileRepo.save(p);
+		}
+		return null;
 	}
 	
 	// deletes profile
@@ -45,14 +52,5 @@ public class TutorProfileService {
 			return null;
 		}
 	}
-	
-	// adds skill to profile
-	public TutorProfileSubjects addSubject(TutorProfileSubjects s) {
-		return profileSubjectRepo.save(s);
-	}
-	
-	// returns subjects this user teaches
-	public List<TutorProfileSubjects> tutorSubjects(TutorProfile tp){
-		return profileSubjectRepo.findAllByTutorProfile(tp);
-	}
+
 }
