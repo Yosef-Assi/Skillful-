@@ -6,32 +6,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration Page</title>
+<title>Admin Registration Page</title>
 </head>
 <body>
-    <h1>Register!</h1>
+    <h1>Admin Registration</h1>
     
     <p><form:errors path="user.*"/></p>
     
     <form:form method="POST" action="/registration" modelAttribute="user">
 
-            <form:label path="firstName">First Name:</form:label>
-            <form:input path="firstName"/>
-            
-            <form:label path="lastName">Last Name:</form:label>
-            <form:input path="lastName"/>
-            
             <form:label path="username">Username:</form:label>
             <form:input path="username"/>  
                      
-            <form:label path="email">Email:</form:label>
-            <form:input type="email" path="email"/>
-
             <form:label path="password">Password:</form:label>
             <form:password path="password"/>
 
-            <form:label path="confirm">Confirm Password:</form:label>
-            <form:password path="confirm"/>
+            <form:label path="passwordConfirmation">Confirm Password:</form:label>
+            <form:password path="passwordConfirmation"/>
 
         	<input type="submit" value="Register"/>
     </form:form>

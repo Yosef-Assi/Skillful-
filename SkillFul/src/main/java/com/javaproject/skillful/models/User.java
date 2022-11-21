@@ -11,16 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -28,37 +23,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    
-    @NotEmpty(message="First name is required!")
-    @Size(min=3, max=30, message="First name must be between 3 and 30 characters")
-    private String firstName;
-    @NotEmpty(message="Last name is required!")
-    @Size(min=3, max=30, message="Last name must be between 3 and 30 characters")
-    private String lastName;
     @Size(min=3)
     private String username;
-    @NotEmpty(message="Email is required!")
-    @Email(message="Please enter a valid email!")
-    private String email;
-    
-    @NotEmpty(message="Password is required!")
-    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+    @Size(min=5)
     private String password;
-    
     @Transient
-    @NotEmpty(message="Confirm Password is required!")
-    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
-    private String confirm;
-  
+    private String passwordConfirmation;
     @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
-    
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "users_roles", 
@@ -66,127 +41,55 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
     
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Session> sessions;
-    
     public User() {
-    	
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
+    }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+    public List<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
     
-    
-      
-	public User(String firstName, String lastName, String username, 
-			String email, String password, String confirm,
-			List<Role> roles, List<Session> sessions) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.confirm = confirm;
-		this.roles = roles;
-		this.sessions = sessions;
-	}
-
-	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<Session> getSessions() {
-		return sessions;
-	}
-
-
-
-	public void setSessions(List<Session> sessions) {
-		this.sessions = sessions;
-	}
-
-
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	@PrePersist
+    @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
-	
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
