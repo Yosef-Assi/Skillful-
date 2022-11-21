@@ -25,7 +25,7 @@ public class TutorProfileSubjects {
 	    private Double hourlyRate;
 	 	
 	 	@NotNull
-	    private String level;
+	    private Level level;
 	
 	   	@Column(updatable=false)
 	    private Date createdAt;
@@ -54,10 +54,11 @@ public class TutorProfileSubjects {
 		public void setHourlyRate(Double hourlyRate) {
 			this.hourlyRate = hourlyRate;
 		}
-		public String getLevel() {
+
+		public Level getLevel() {
 			return level;
 		}
-		public void setLevel(String level) {
+		public void setLevel(Level level) {
 			this.level = level;
 		}
 		public Date getCreatedAt() {

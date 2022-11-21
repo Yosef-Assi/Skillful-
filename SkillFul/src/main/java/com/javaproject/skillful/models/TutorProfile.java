@@ -28,14 +28,14 @@ public class TutorProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	private Location location;
 	
-	private Boolean online;
+	private Boolean online = false;
 	
 	
-	@NotEmpty(message = "Tell us about yourself!")
-	@Size(min = 250, message = "description must be at least 250 charachters")
+	@NotEmpty(message = "Please include a description about your tutoring services")
+	@Size(min= 250, message = "description must be at least 250 characters")
 	private String description;
 	
 	@Column(updatable = false)

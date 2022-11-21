@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.javaproject.skillful.models.Level;
+import com.javaproject.skillful.models.Location;
 import com.javaproject.skillful.models.TutorProfile;
 import com.javaproject.skillful.models.TutorProfileSubjects;
+import com.javaproject.skillful.services.SubjectService;
 import com.javaproject.skillful.services.TutorProfileService;
 import com.javaproject.skillful.services.TutorService;
 
@@ -27,6 +30,9 @@ public class TutorProfileController {
 	@Autowired
 	TutorService tutorService;
 	
+	@Autowired
+	SubjectService subjectService;
+	
 	// add authorization to different pages !!!
 	
 	
@@ -36,6 +42,7 @@ public class TutorProfileController {
 			HttpSession session, 
 			Model model, 
 			@ModelAttribute("TutorProfile") TutorProfile tutorProfile) {
+		model.addAttribute("locations", Location.values());
 		return "createProfile.jsp";
 	}
 	
@@ -51,7 +58,7 @@ public class TutorProfileController {
 		} else {
 			profileService.createProfile(profile);
 			Long profileId = profile.getId();
-			return "redirect:/tutor/profile/"+profileId+"subjects";
+			return "redirect:/tutor/profile/"+profileId+"/subjects";
 		}
 	}
 	
@@ -61,16 +68,18 @@ public class TutorProfileController {
 			@PathVariable("profileId") Long profileId,
 			Model model,
 			HttpSession session,
-			@ModelAttribute("TutorProfileSubjects") TutorProfileSubjects profileSubject) {
+			@ModelAttribute("TutorProfileSubject") TutorProfileSubjects profileSubject) {
 		TutorProfile thisProfile = profileService.findProfileById(profileId);
 		model.addAttribute("tutorProfile", thisProfile);
+		model.addAttribute("levels", Level.values());
+		model.addAttribute("subjects", subjectService.allSubjects());
 		return "addSubject.jsp";
 	}
 	
 	// adds subject to profile
-	@PostMapping("/tutor/profile/subjects")
+	@PostMapping("/tutor/profile/{profileId}/subjects")
 	public String addSubject(
-			@ModelAttribute("TutorProfileSubjects") TutorProfileSubjects profileSubject,
+			@ModelAttribute("TutorProfileSubject") TutorProfileSubjects profileSubject,
 			HttpSession session,
 			Model model) {
 		profileService.addSubject(profileSubject);
