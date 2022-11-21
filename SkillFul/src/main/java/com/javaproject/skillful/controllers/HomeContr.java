@@ -2,6 +2,8 @@ package com.javaproject.skillful.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,14 +12,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaproject.skillful.models.Location;
+import com.javaproject.skillful.models.Subject;
+import com.javaproject.skillful.models.TutorProfile;
+import com.javaproject.skillful.models.TutorProfileSubjects;
+import com.javaproject.skillful.services.SubjectService;
 import com.javaproject.skillful.services.TestServ;
+import com.javaproject.skillful.services.TutorProfileService;
+import com.javaproject.skillful.services.TutorService;
 
 @Controller
 public class HomeContr {
 	@Autowired
 	TestServ testServ;
+	@Autowired
+	TutorProfileService profileService;
 	
+	@Autowired
+	TutorService tutorService;
+	
+	@Autowired
+	SubjectService subjectService;
 	
 	@PostMapping("/search")
 	public String dashboard(@RequestParam("search") String search,@RequestParam("location") String location,@RequestParam("level") String level,Model model) {
@@ -75,6 +89,28 @@ public class HomeContr {
 		System.out.println(skills);
 		model.addAttribute("skills", skills);
 		return "filter.jsp";
+	}
+	
+	
+	@GetMapping("/tutor/profile/{id}/{skill}")
+	public String showProfile(
+			@PathVariable("id") Long profileId,
+			Model model,
+			HttpSession session,
+			@PathVariable("skill") String skill) {
+		TutorProfile tutorProfile = profileService.findProfileById(profileId);
+		List<TutorProfileSubjects> sub =profileService.tutorSubjects(tutorProfile);
+		
+		for(TutorProfileSubjects sub2:sub) {
+			if(sub2.getSubject().getTitle().contains(skill)) {
+				System.out.println(sub2.getSubject().getTitle());
+				model.addAttribute("subjectsearch", sub2);
+
+			}
+		}
+		model.addAttribute("profileSubjects", profileService.tutorSubjects(tutorProfile));
+		model.addAttribute("tutorProfile", profileService.findProfileById(profileId));
+		return "NewTutorProfile.jsp";
 	}
 }
 
