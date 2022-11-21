@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login Page</title>
+<title>Admin Login Page</title>
 </head>
 <body>
+	<h1>Admin Login</h1>
     <c:if test="${logoutMessage != null}">
         <c:out value="${logoutMessage}"></c:out>
     </c:if>

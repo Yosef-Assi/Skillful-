@@ -23,7 +23,7 @@ public class UserValidator implements Validator {
     public void validate(Object object, Errors errors) {
         User user = (User) object;
         
-        if (!user.getConfirm().equals(user.getPassword())) {
+        if (!user.getPasswordConfirmation().equals(user.getPassword())) {
 
             errors.rejectValue("confirm", "Match");
         }

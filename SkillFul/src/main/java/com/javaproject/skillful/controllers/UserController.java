@@ -30,7 +30,7 @@ public class UserController {
     
     @RequestMapping("/registration")
     public String registerForm(@ModelAttribute("user") User user) {
-        return "UserRegistration.jsp";
+        return "/admin/adminregistration.jsp";
     }
 
     @PostMapping("/registration")
@@ -38,20 +38,12 @@ public class UserController {
 
         userValidator.validate(user, result);
         if (result.hasErrors()) {
-            return "UserRegistration.jsp";
+            return "/admin/adminregistration.jsp";
         }
-        
-        userService.saveWithUserRole(user);
+        userService.saveUserWithAdminRole(user);
         return "redirect:/login";
     }
   
-    @RequestMapping("/admin")
-    public String adminPage(Principal principal, Model model) {
-    	String username = principal.getName();
-        model.addAttribute("currentUser", userService.findByUsername(username));
-        return "adminPage.jsp";
-    }
-   
     @RequestMapping("/login")
     public String login(@RequestParam(value="error", required=false) String error, @RequestParam(value="logout", required=false) String logout, Model model) {
         if(error != null) {
@@ -60,8 +52,16 @@ public class UserController {
         if(logout != null) {
             model.addAttribute("logoutMessage", "Logout Successful!");
         }
-        return "UserLogin.jsp";
+        return "/admin/adminlogin.jsp";
     }
+    
+    @RequestMapping("/admin")
+    public String adminPage(Principal principal, Model model) {
+    	String username = principal.getName();
+    	model.addAttribute("currentUser", userService.findByUsername(username));
+    	return "/admin/adminPage.jsp";
+    }
+    
     
     @RequestMapping(value = {"/", "/home"})
     public String home(Principal principal, Model model) {
