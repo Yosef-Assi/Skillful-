@@ -19,6 +19,7 @@ import com.javaproject.skillful.models.Session;
 import com.javaproject.skillful.models.Tutor;
 import com.javaproject.skillful.repositories.SessionRepository;
 import com.javaproject.skillful.services.SessionService;
+import com.javaproject.skillful.services.StudentService;
 import com.javaproject.skillful.services.TutorProfileService;
 import com.javaproject.skillful.services.TutorService;
 
@@ -38,6 +39,9 @@ public class SessionController {
 	@Autowired
 	TutorService tutorServ;
 	
+	@Autowired
+	StudentService studentService;
+	
 	//methods 
 	//methods to add sessions 
 	@GetMapping("/student/session/new/{id}") 
@@ -46,8 +50,10 @@ public class SessionController {
 			return "redirect:/";
 		}else {
 			/*
-			 * TutorProfile tutors =
-			 */			model.addAttribute("tutors",tutorProfileService.findProfileById(id));
+			 * TutorProfile tutors 
+			 */
+			Tutor tutor = tutorServ.findTutorById(id);
+			model.addAttribute("tutors",tutor);
 			return "add_session.jsp";
 		}
 	}
@@ -69,6 +75,8 @@ public class SessionController {
 		if (session.getAttribute("studentId") == null) {
 			return "redirect:/";
 		}else {
+			model.addAttribute("student", studentService.findStudentById(id));
+
 			model.addAttribute("mySession", sessionService.allSessions());
 			return "my_session.jsp";
 		}
@@ -82,6 +90,8 @@ public class SessionController {
 		if (session.getAttribute("studentId") == null) {
 			return "redirect:/";
 		}else {
+			model.addAttribute("student", studentService.findStudentById((Long)session.getAttribute("studentId")));
+
 			model.addAttribute("updatedSession", sessionService.findSession(sessionId));
 			return "edit_session.jsp";
 		}

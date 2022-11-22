@@ -32,10 +32,10 @@
                         <a class="nav-link" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/tutor/profile/${tutorsessions.getTutorProfile().getId()}">Profile</a>
+                        <a class="nav-link" aria-current="page" href="/dashboard">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tutor/session/${tutorId }">My Sessions</a>
+                        <a class="nav-link" href="/student/session/${student.id }">My Sessions</a>
                     </li>
                 </ul>
                     <a href="/logout" class="logout">Logout</a>
