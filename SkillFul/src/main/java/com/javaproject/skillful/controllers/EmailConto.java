@@ -42,13 +42,15 @@ public class EmailConto {
 		return "Email.jsp";
 	}
 	@PostMapping("/student/email/{id}")
-	public String sendEmail(@RequestParam("subject") String subject,@RequestParam("message") String message,@PathVariable("id")Long id,HttpSession session) {
+	public String sendEmail(@RequestParam("subject") String subject,@RequestParam("message") String message,@PathVariable("id")Long id,HttpSession session,@RequestParam("name") String name) {
 		Long is =(Long) session.getAttribute("mail");
 
 		Tutor tutor = tutorService.findTutorById(is);
 
-		senderService.sendSimpleEmail(tutor.getEmail(),subject,message);
-		return "redirect:/send/email/"+is;
+			senderService.sendSimpleEmail(tutor.getEmail(),subject,
+				
+				"My Name : "+name+" "+"\r\n" +message);
+		return "redirect:/student/send/email/"+is;
 	}
 	
 	@RequestMapping("/mails")

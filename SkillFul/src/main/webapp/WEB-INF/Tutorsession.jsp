@@ -8,8 +8,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-	<title>My sessions</title>
-<link rel="stylesheet" href="/css/navbarCSS.css">
+	<title>Tutor Sessions</title>
+	<link rel="stylesheet" href="/css/navbarCSS.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+ <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <div class="logo">
                 <img src="<c:url value="/images/project_logo.png"/>" alt="test"/>
@@ -45,14 +45,14 @@
 	<div class="container-md">
 		<div class="d-flex justify-content-between align-items-center my-3">
 			<div>
-				<h1>My Session!</h1>
+				<h1>My Session</h1>
 			</div>
 			
 		</div>
 		<table class="table table-striped">
 			<thead>
 			    <tr>
-			      <th scope="col">Tutor Name</th>
+			      <th scope="col">Student Name</th>
 			      <th scope="col">Start Date</th>
 			      <th scope="col">End Date</th>
 			      <th scope="col">Location</th>
@@ -63,11 +63,11 @@
 		    <tbody>
 		  		<c:forEach var="session" items="${mySession}">
 		  		<tr>
-		  		<td scope="row"> ${session.getTutor().firstName} </td>
+		  		<td scope="row"> ${session.student.firstName} </td>
 			      <td scope="row">${session.startDate} </td>
 			      <td>${session.endDate}</td>
 			      <td>${session.getTutor().getTutorProfile().location}</td>
-			      <td><a href="/student/delete/${session.id}">Delete </a> | <a href="/student/sessoion/edit/${session.id}">Edit </a></td>
+			      <td><a href="/tutor/delete/${session.id}">Delete</a></td>
 			    </tr>
 		   		</c:forEach>
 		  	</tbody>
