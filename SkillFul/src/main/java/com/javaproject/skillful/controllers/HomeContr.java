@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javaproject.skillful.models.Subject;
 import com.javaproject.skillful.models.TutorProfile;
 import com.javaproject.skillful.models.TutorProfileSubjects;
+import com.javaproject.skillful.services.ProfileSubjectService;
 import com.javaproject.skillful.services.SubjectService;
 import com.javaproject.skillful.services.TestServ;
 import com.javaproject.skillful.services.TutorProfileService;
@@ -32,6 +33,9 @@ public class HomeContr {
 	
 	@Autowired
 	SubjectService subjectService;
+	
+	@Autowired
+	ProfileSubjectService ProfileSubjectService;
 	
 	@PostMapping("/search")
 	public String dashboard(@RequestParam("search") String search,@RequestParam("location") String location,@RequestParam("level") String level,Model model) {
@@ -99,7 +103,7 @@ public class HomeContr {
 			HttpSession session,
 			@PathVariable("skill") String skill) {
 		TutorProfile tutorProfile = profileService.findProfileById(profileId);
-		List<TutorProfileSubjects> sub =profileService.tutorSubjects(tutorProfile);
+		List<TutorProfileSubjects> sub =ProfileSubjectService.tutorSubjects(tutorProfile);
 		
 		for(TutorProfileSubjects sub2:sub) {
 			if(sub2.getSubject().getTitle().contains(skill)) {
@@ -108,7 +112,7 @@ public class HomeContr {
 
 			}
 		}
-		model.addAttribute("profileSubjects", profileService.tutorSubjects(tutorProfile));
+		model.addAttribute("profileSubjects", ProfileSubjectService.tutorSubjects(tutorProfile));
 		model.addAttribute("tutorProfile", profileService.findProfileById(profileId));
 		return "NewTutorProfile.jsp";
 	}
