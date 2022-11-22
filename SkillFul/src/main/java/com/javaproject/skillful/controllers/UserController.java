@@ -53,6 +53,7 @@ public class UserController {
             model.addAttribute("logoutMessage", "Logout Successful!");
         }
         return "/admin/adminlogin.jsp";
+
     }
     
     @RequestMapping("/admin")
@@ -68,6 +69,6 @@ public class UserController {
 
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
-        return "homePage.jsp";
+        return "/admin/adminHomePage.jsp";
     }
 }

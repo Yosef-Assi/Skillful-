@@ -10,18 +10,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <title>What would you like to teach?</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/navbarCSS.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-   <div>
-		<h1>Add a Subject you would like to teach: </h1>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <div class="logo">
+                <img src="<c:url value="/images/project_logo.png"/>" alt="test"/>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Sessions</a>
+                    </li>
+                </ul>
+                    <a href="/logout" class="logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+   <main>
+		<h1 class="mt-4">Add a Subject you would like to teach: </h1>
 		<form:form action="/tutor/profile/${tutorProfile.id}/subjects" method="post" modelAttribute="TutorProfileSubject">
-			<div>
+			<div class="my-4">
 				<form:select path="subject" class="form-select">
 				<form:option value="">SELECT SUBJECT</form:option>
 				<c:forEach var="subject" items="${subjects}">
@@ -29,12 +56,13 @@
 				</c:forEach>
 				</form:select>
 			</div>
-			<div>
-				<form:label path="hourlyRate" class="form-label">Hourly Rate for This Subject</form:label>
+			<div class="mb-3">
+				<form:label path="hourlyRate" class="form-label">Hourly Rate for this Subject</form:label>
 				<form:errors path="hourlyRate" class="text-danger small"/>
-				<form:input path="hourlyRate"/>
+				<form:input path="hourlyRate" class="form-control"/>
 			</div>
-			<div>
+			<div class="mb-3">
+				<form:label path="level" class="form-label">The levels you want to teach</form:label>
 				<form:select path="level" class="form-select">
 				<form:errors path="level" class="text-danger small"/>
 				<form:option value="">SELECT LEVEL</form:option>
@@ -42,9 +70,11 @@
 				</form:select>
 			</div>
 	   		<form:input type="hidden" path="tutorProfile" value="${tutorProfile.id}"/>
-			<input type="submit" value="Submit"/>
+			<div class="text-center">
+				<input type="submit" value="Submit" class="btn btn-dark"/>
+				<a href="/tutor/profile/${tutorProfile.id}" class="btn btn-outline-dark">Done</a>
+			</div>
 		</form:form>
-		<a href="/tutor/profile/${tutorProfile.id}">Done</a>
-	</div>
+	</main>
 </body>
 </html>

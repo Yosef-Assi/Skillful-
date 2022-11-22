@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 	<title>Registration</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/loginreg.css">
 </head>
 <body>
 	<main class="row">
