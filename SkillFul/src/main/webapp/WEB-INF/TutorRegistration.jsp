@@ -26,11 +26,6 @@
                     <form:input type="text" path="lastName" id="fname" class="form-control"/>             
                 </div>
                 <div class="mb-3">
-                    <form:label for="fname" path="username" class="form-label">Username</form:label>
-                    <p class="text-danger small"><form:errors path="username"/></p>
-                    <form:input type="text" path="username" id="fname" class="form-control"/>             
-                </div>
-                <div class="mb-3">
                     <form:label for="email" path="email" class="form-label">Email</form:label>
                     <p class="text-danger small"><form:errors path="email"/></p>
                     <form:input type="text" path="email" id="email" class="form-control"/>             
