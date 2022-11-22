@@ -11,83 +11,60 @@
 <html>
 <head>
 <meta charset="windows-1256">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-  body {
-  	margin:0% 30%;
-  }
-  </style>
+<title>Contact ${tutor.firstName}</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/navbarCSS.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<!--Section: Contact v.2-->
-<section class="mb-4">
-
-    <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact</h2>
-    <!--Section description-->
-   
-
-    <div class="row">
-
-        <!--Grid column-->
-        <div class="col-md-9 mb-md-0 mb-5">
-            <form action="/student/email/${tutor.id }" method="POST">
-        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="name" name="name" class="form-control">
-                            <label for="name" class="">Your name</label>
-                        </div>
-                    </div>
-                
-                  
-                </div>
-                <!--Grid row-->
-
-                <!--Grid row-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <input type="text" id="subject" name="subject" class="form-control">
-                            <label for="subject" class="">Subject</label>
-                        </div>
-                    </div>
-                </div>
-                <!--Grid row-->
-
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-12">
-
-                        <div class="md-form">
-                            <textarea  id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-                            <label for="message">Your message</label>
-                        </div>
-
-                    </div>
-                </div>
-                <!--Grid row-->
-				<input type="submit" class="form-control" value="Send">
-            </form>
-
-            
-            <div class="status"></div>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <div class="logo">
+                <img src="<c:url value="/images/project_logo.png"/>" alt="test"/>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Sessions</a>
+                    </li>
+                </ul>
+                    <a href="/logout" class="logout">Logout</a>
+            </div>
         </div>
-
-
-    </div>
-
-</section>
+    </nav>
+    <main class="container">
+		<h3 class="text-center my-4">Contact ${tutor.firstName} ${tutor.lastName}</h3>
+		    <form action="/student/email/${tutor.id}" method="POST">
+		        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		                        <div class="mb-3">
+		                            <label for="name" class="form-label">Your name</label>
+		                            <input type="text" id="name" name="name" class="form-control">
+		                    	</div>
+		                    <div class="mb-3">
+		                            <label for="subject" class="form-label">Subject</label>
+		                            <input type="text" id="subject" name="subject" class="form-control">
+		                	</div>
+		                        <div class="mb-3">
+		                            <label for="message" class="form-label">Your message</label>
+		                            <textarea  id="message" name="message" rows="3" class="form-control md-textarea"></textarea>
+		                        </div>
+		                <div class="d-grid gap-2 my-3">
+						<input type="submit" class="btn btn-outline-dark my-4" value="Send">
+		           		</div>
+			</form>
+    </main>
 </body>
 </html>
