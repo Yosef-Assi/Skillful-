@@ -11,9 +11,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>Skillful + TESTING + test2  + Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quidem amet officiis delectus accusantium illo cupiditate optio dicta nulla possimus? Esse inventore earum placeat architecto, explicabo excepturi ratione alias incidunt.</title>
+	<title></title>
 </head>
 <body>
-test
+	<div class="container">
+		<h1>Welcome, ${thisStudent.firstName}</h1>
+		<p>This is your dashboard. Nothing to see here yet.</p>
+		<p><a href="/logout">Logout</a></p>
+	</div>
 </body>
 </html>

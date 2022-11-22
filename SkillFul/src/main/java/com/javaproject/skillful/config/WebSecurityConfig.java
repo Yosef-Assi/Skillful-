@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 		
 		http.
 	            authorizeRequests() // Allows restricting access based upon the HttpServletRequest
-	                .antMatchers("/css/**", "/js/**",  "/tutor/**", "/welcome/**","/registration").permitAll() //PathMatcher implementation for Ant-style path patterns
+	                .antMatchers("/webjars/**", "/css/**", "/js/**",  "/tutor/**", "/student/**", "/welcome/**","/registration").permitAll() //PathMatcher implementation for Ant-style path patterns
 		            .antMatchers("/admin/**").access("hasRole('ADMIN')")
 	                .anyRequest().authenticated()
 	                .and()
@@ -41,4 +41,10 @@ public class WebSecurityConfig {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	    } 
+	
+//    public void configure(WebSecurity web) throws Exception {
+//        web
+//            .ignoring()
+//            .antMatchers("/resources/**", "/static/**","/webjars/**");
+//    }
 }
