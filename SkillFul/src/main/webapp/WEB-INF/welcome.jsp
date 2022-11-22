@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Welcome, ${thisTutor.username}</h1>
+		<h1>Welcome, ${thisTutor.firstName}</h1>
 		<p>This is your dashboard. Nothing to see here yet.</p>
 		<p><a href="/logout">Logout</a></p>
 	</div>
