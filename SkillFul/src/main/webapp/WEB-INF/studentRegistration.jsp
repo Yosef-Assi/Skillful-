@@ -13,8 +13,8 @@
 <body>
 	<main class="row">
         <div class="w-50 mx-auto">
-            <h2 class="text-center">Register as a tutor</h2>
-            <form:form action="/tutor/register" method="post" modelAttribute="newTutor">
+            <h2 class="text-center">Registration</h2>
+            <form:form action="/student/register" method="post" modelAttribute="newStudent">
                 <div class="mb-3">
                     <form:label for="fname" path="firstName" class="form-label">First Name</form:label>
                     <p class="text-danger small"><form:errors path="firstName"/></p>
@@ -46,7 +46,7 @@
                     <form:input type="password" path="confirm" id="confirm" class="form-control"/>             
                 </div>
                 <div class="text-center">
-                    <input type="submit" value="Register" class="btn btn-primary shadow-sm rounded">
+                    <input type="submit" value="Register" class="btn btn-dark shadow-sm rounded">
                 </div>
             </form:form>
         </div>
