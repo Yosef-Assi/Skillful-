@@ -35,10 +35,10 @@
                         <a class="nav-link" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Profile</a>
+                        <a class="nav-link" aria-current="page" href="/tutor/profile/${tutorProfile.id }">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tutor/session/${tutorId }">My Sessions</a>
+                        <a class="nav-link" href="/tutor/session/${tutorProfile.tutor.id }">My Sessions</a>
                     </li>
                 </ul>
                     <a href="/logout" class="logout">Logout</a>
@@ -87,7 +87,7 @@
 				<p class="online">Offers Online lessons</p>
 			</c:if>
 			<a href="/tutor/profile/${tutorProfile.id}/edit" style="color: black">Edit profile</a><br>
-			<a href="/tutor/session/${tutorId}" style="color: black">My sessions</a>
+			<a href="/tutor/session/${tutorProfile.tutor.id }" style="color: black">My sessions</a>
     	</div>
     </main>
 </body>

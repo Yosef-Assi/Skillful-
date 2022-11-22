@@ -35,10 +35,10 @@
                         <a class="nav-link" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Profile</a>
+                        <a class="nav-link" aria-current="page" href="/tutor/profile/${tutorProfile.id }">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Sessions</a>
+                        <a class="nav-link" href="/tutor/session/${tutorProfile.tutor.id }">My Sessions</a>
                     </li>
                 </ul>
                     <a href="/logout" class="logout">Logout</a>

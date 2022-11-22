@@ -36,10 +36,10 @@
                         <a class="nav-link" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Profile</a>
+                        <a class="nav-link" aria-current="page" href="/dashboard">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Sessions</a>
+                        <a class="nav-link" href="/student/session/${student.id }">My Sessions</a>
                     </li>
                 </ul>
                     <a href="/logout" class="logout">Logout</a>
@@ -57,17 +57,17 @@
 				<div class="col-2">
 					<select name="location" id="location" class="form-select">
 						<option value="None">Location</option>	  
-						<option value="1">Ramallah</option>
-						<option value="2">Nablus</option>
-						<option value="3">Jenin</option>
-						<option value="4">Hebron</option>
-						<option value="5">Tulkarm</option>
-						<option value="6">Bethlehem</option>
-						<option value="7">Qalqeliah</option>
-						<option value="8">Tubas</option>
-						<option value="9">Jericho</option>
-						<option value="10">Jerusalem</option>
-						<option value="11">Gaza</option>				
+						<option value="0">Ramallah</option>
+						<option value="1">Nablus</option>
+						<option value="2">Jenin</option>
+						<option value="3">Hebron</option>
+						<option value="4">Tulkarm</option>
+						<option value="5">Bethlehem</option>
+						<option value="6">Qalqeliah</option>
+						<option value="7">Tubas</option>
+						<option value="8">Jericho</option>
+						<option value="9">Jerusalem</option>
+						<option value="10">Gaza</option>				
 					</select> 
 				</div>
 				<div class="col-2">
