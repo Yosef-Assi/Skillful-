@@ -49,6 +49,12 @@ public class HomeContr {
 		model.addAttribute("student", student);
 		return "filter.jsp";
 	}
+
+	@GetMapping("/")
+	public String searcPh() {
+	
+		return "redirect:/dashboard";
+	}
 	
 	
 	@PostMapping("/search")
