@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.javaproject.skillful.models.Session;
 import com.javaproject.skillful.repositories.SessionRepository;
+import com.javaproject.skillful.repositories.TutorProfileRepository;
 import com.javaproject.skillful.services.SessionService;
+import com.javaproject.skillful.services.TutorProfileService;
 
 
 //Note that the name of session "userId" is not exactly like that
@@ -27,31 +29,38 @@ public class SessionController {
 	@Autowired
 	SessionRepository sessionRepository;
 	
+	@Autowired
+	TutorProfileService tutorProfileService;
+	
 	//methods 
 	//methods to add sessions 
-	@GetMapping("/session/new") 
-	public String allSessions(@ModelAttribute("newSession") Session newSession, HttpSession session) {
-		if (session.getAttribute("userId") == null) {
+	@GetMapping("/student/session/new/{id}") 
+	public String allSessions(@ModelAttribute("newSession") Session newSession, HttpSession session,@PathVariable("id") Long id,Model model) {
+		if (session.getAttribute("studentId") == null) {
 			return "redirect:/";
 		}else {
+			/*
+			 * TutorProfile tutors =
+			 */			model.addAttribute("tutors",tutorProfileService.findProfileById(id));
 			return "add_session.jsp";
 		}
 	}
 	
-	@PostMapping("/session/new")
-	public String createNewSession(@Valid @ModelAttribute("newSession") Session newSession, BindingResult result) {
+	@PostMapping("/student/session/new")
+	public String createNewSession(@Valid @ModelAttribute("newSession") Session newSession, BindingResult result,HttpSession session) {
 		if (result.hasErrors()) {
 			return "add_session.jsp";
 		} else {
+		
 			sessionService.createSession(newSession);
-			return "redirect:/mySession";
+			return "redirect:/student/session/"+session.getAttribute("studentId");
 		}
 	}
 	
 	//methods to retrieve all Sessions
-	@GetMapping("/mySession")
-	public String mySessions(Model model, HttpSession session) {
-		if (session.getAttribute("userId") == null) {
+	@GetMapping("/student/session/{id}")
+	public String mySessions(Model model, HttpSession session,@PathVariable("id") Long id) {
+		if (session.getAttribute("studentId") == null) {
 			return "redirect:/";
 		}else {
 			model.addAttribute("mySession", sessionService.allSessions());
@@ -62,9 +71,9 @@ public class SessionController {
 	
 	//method to edit specific session 
 	//first method to render edit page 
-	@GetMapping("/sessoion/{session_id}/edit")
+	@GetMapping("/student/sessoion/edit/{session_id}")
 	public String editPage(@PathVariable("session_id") Long sessionId, HttpSession session, Model model) {
-		if (session.getAttribute("userId") == null) {
+		if (session.getAttribute("studentId") == null) {
 			return "redirect:/";
 		}else {
 			model.addAttribute("updatedSession", sessionService.findSession(sessionId));
@@ -73,27 +82,24 @@ public class SessionController {
 	}
 	
 	//second method to edit a specific session
-	@PutMapping("/sessoion/{session_id}/edit")
-	public String updateSession(@Valid @ModelAttribute("updatedSession") Session updatedSession, BindingResult result, @PathVariable("session_id") Long session_id) {
+	@PutMapping("/student/session/edit/{session_id}")
+	public String updateSession(@Valid @ModelAttribute("updatedSession") Session updatedSession, BindingResult result, @PathVariable("session_id") Long session_id,HttpSession session) {
 		if (result.hasErrors()) {
 			return "edit_session.jsp";
 		}else {
 			sessionService.createSession(updatedSession);
-			return "redirect:/mySession";
+			return "redirect:/student/session/"+session.getAttribute("studentId");
 		}
 	}
 	
 	//method to delete a specific session
-    @GetMapping("/delete/{session_id}")
+    @GetMapping("/student/delete/{session_id}")
     public String deleteBook(@PathVariable("session_id") Long session_id, HttpSession session) {
-    	if(session.getAttribute("userId") == null) {
+    	if(session.getAttribute("studentId") == null) {
 			return "redirect:/";
     	}
-    	 Session sessionToDelete = sessionService.findSession(session_id);
-    	 if (session.getAttribute("userId") == sessionToDelete.getStudent().getId()) {
 			sessionService.deleteSession(session_id);
-		}
-			return "redirect:/mySession";
+			return "redirect:/student/session/"+session.getAttribute("studentId");
     }
 	
 }

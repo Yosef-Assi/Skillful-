@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,12 +24,10 @@ public class Session {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotEmpty(message = "Start time is neccessery")
-	@DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
+	@Future
+    @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
-	@NotEmpty(message = "End time is neccessery")
-	@DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 	
 	private Location location;
@@ -127,6 +126,12 @@ public class Session {
 	
 	public Date getUpdatedAt() {
 		return updatedAt;
+	}
+	public Tutor getTutor() {
+		return tutor;
+	}
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
 	}
     
     

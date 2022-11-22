@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Bokking a session</title>
+	<title>Edit Bokking a session</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -23,8 +23,9 @@
 				<a href="/" class="btn btn-success btn-sm">LogOut</a>
 			</div>
 		</div>	
-		<form:form class="container-md w-75" action="/student/session/new" method="post" modelAttribute="newSession">
-		
+		<form:form class="container-md w-75" action="/student/session/edit/${updatedSession.id }" method="post" modelAttribute="updatedSession">
+			<input type="hidden" name="_method" value="put">
+			
 			<form:errors path="startDate" class="fw-bold text-danger d-block"/>
         	<form:label path="startDate" for="startDate" class="fs-5 fw-bold text-success d-inlineblock">Start Date:</form:label>
         	<form:input path="startDate" type="date" class="form-control mb-3" id="startDate"/>

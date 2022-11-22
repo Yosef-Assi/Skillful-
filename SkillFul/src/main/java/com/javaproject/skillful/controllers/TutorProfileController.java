@@ -64,6 +64,7 @@ public class TutorProfileController {
 		} else {
 			profileService.createProfile(profile);
 			Long profileId = profile.getId();
+			session.setAttribute("prof", profileId);
 			return "redirect:/tutor/profile/"+profileId+"/subjects";
 		}
 	}
