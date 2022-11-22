@@ -1,5 +1,7 @@
 package com.javaproject.skillful.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,10 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.javaproject.skillful.models.Session;
+import com.javaproject.skillful.models.Tutor;
 import com.javaproject.skillful.repositories.SessionRepository;
-import com.javaproject.skillful.repositories.TutorProfileRepository;
 import com.javaproject.skillful.services.SessionService;
 import com.javaproject.skillful.services.TutorProfileService;
+import com.javaproject.skillful.services.TutorService;
 
 
 //Note that the name of session "userId" is not exactly like that
@@ -31,6 +34,9 @@ public class SessionController {
 	
 	@Autowired
 	TutorProfileService tutorProfileService;
+	
+	@Autowired
+	TutorService tutorServ;
 	
 	//methods 
 	//methods to add sessions 
@@ -101,5 +107,33 @@ public class SessionController {
 			sessionService.deleteSession(session_id);
 			return "redirect:/student/session/"+session.getAttribute("studentId");
     }
+    
+    //////////////////////////////////TutorSession///////////////////////////////////
+    
+    
+    @GetMapping("/tutor/session/{id}")
+	public String tutorSessions(Model model, HttpSession session,@PathVariable("id") Long id) {
+		if (session.getAttribute("tutorId") == null) {
+			return "redirect:/tutor/login";
+		}else {
+			Tutor tutorsessions = tutorServ.findTutorById(id);
+			model.addAttribute("tutorsessions", tutorsessions);
+
+			List<Session> sessions =tutorsessions.getSessions();
+			model.addAttribute("mySession", sessions);
+			
+			return "Tutorsession.jsp";
+		}
+
+	}
+    @GetMapping("/tutor/delete/{session_id}")
+    public String deleteBookTutor(@PathVariable("session_id") Long session_id, HttpSession session) {
+    	if(session.getAttribute("tutorId") == null) {
+			return "redirect:/tutor/login";
+    	}
+			sessionService.deleteSession(session_id);
+			return "redirect:/tutor/session/"+session.getAttribute("tutorId");
+    }
+    
 	
 }
