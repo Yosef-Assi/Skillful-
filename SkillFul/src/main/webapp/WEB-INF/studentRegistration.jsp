@@ -7,13 +7,16 @@
 <head>
 <meta charset="UTF-8">
 	<title>Registration</title>
-	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/loginreg.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<main class="row">
-        <div class="w-50 mx-auto">
-            <h2 class="text-center">Registration</h2>
+	<main>
+        <div class="container my-5 login-reg p-5">
+            <h1 class="text-center">Registration</h1>
             <form:form action="/student/register" method="post" modelAttribute="newStudent">
                 <div class="mb-3">
                     <form:label for="fname" path="firstName" class="form-label">First Name</form:label>
@@ -40,8 +43,8 @@
                     <p class="text-danger small"><form:errors path="confirm"/></p>
                     <form:input type="password" path="confirm" id="confirm" class="form-control"/>             
                 </div>
-                <div class="text-center">
-                    <input type="submit" value="Register" class="btn btn-dark shadow-sm rounded">
+                <div class="d-grid gap-2">
+                    <input type="submit" value="Register" class="btn btn-dark btn-lg shadow-sm rounded mt-3">
                 </div>
             </form:form>
         </div>

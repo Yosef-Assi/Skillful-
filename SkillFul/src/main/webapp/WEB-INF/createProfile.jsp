@@ -45,7 +45,7 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="container">
     	<h1 class="mt-4">Let's create your tutor profile</h1>
 		<form:form action="/tutor/profile/create" method="post" modelAttribute="TutorProfile">
 			<div class="my-4">

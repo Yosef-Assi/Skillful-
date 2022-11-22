@@ -45,7 +45,7 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="container">
     	<h1 class="text-center mt-4">Edit Your Profile</h1>
 		<form:form action="/tutor/profile/${TutorProfile.id}/edit" method="post" modelAttribute="TutorProfile">
 			<input type="hidden" name="_method" value="put">
