@@ -64,7 +64,7 @@ public class UserController {
     }
     
     
-    @RequestMapping(value = {"/", "/home"})
+    @RequestMapping(value ="/home")
     public String home(Principal principal, Model model) {
 
         String username = principal.getName();
