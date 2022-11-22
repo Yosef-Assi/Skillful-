@@ -6,13 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Tutor Login</title>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/loginreg.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 	<main>
-		<div class="container">
-            <h2 class="text-center">Login</h2>
+		<div class="container my-5 login-reg p-5">
+            <h1 class="text-center">Tutor Login</h1>
             <form:form action="/tutor/login" method="post" modelAttribute="newLogin">
                 <div class="mb-3">
                     <form:label for="login-email" path="email" class="form-label">Email</form:label>
@@ -24,8 +28,8 @@
                     <p class="text-danger small"><form:errors path="password"/></p>
                     <form:input type="password" path="password" id="login-pw" class="form-control"/>             
                 </div>
-                <div class="text-center">
-                    <input type="submit" value="Log In" class="btn btn-primary shadow-sm rounded">
+                <div class="d-grid gap-2">
+                    <input type="submit" value="Login" class="btn btn-dark btn-lg shadow-sm rounded mt-3">
                 </div>
             </form:form>
         </div>

@@ -45,7 +45,7 @@
             </div>
         </div>
     </nav>
-   <main>
+   <main class="container">
 		<h1 class="mt-4">Add a Subject you would like to teach: </h1>
 		<form:form action="/tutor/profile/${tutorProfile.id}/subjects" method="post" modelAttribute="TutorProfileSubject">
 			<div class="my-4">

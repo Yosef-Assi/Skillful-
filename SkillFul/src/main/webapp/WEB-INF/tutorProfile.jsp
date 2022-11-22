@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <title>Your Profile</title>
 	<link rel="stylesheet" href="/css/navbarCSS.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
@@ -86,7 +86,7 @@
 			<c:if test="${tutorProfile.online == true}">
 				<p class="online">Offers Online lessons</p>
 			</c:if>
-			<a href="/" style="color: black">Edit profile</a><br>
+			<a href="/tutor/profile/${tutorProfile.id}/edit" style="color: black">Edit profile</a><br>
 			<a href="/" style="color: black">My sessions</a>
     	</div>
     </main>
