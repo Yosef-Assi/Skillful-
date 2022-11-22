@@ -18,7 +18,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h1>Welcome Page <c:out value="${currentUser.username}"></c:out></h1>
+    <h2>Hi ${student.firstName} ${student.lastName} </h2>
     
     <form id="logoutForm" method="POST" action="/logout">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -101,7 +101,9 @@
     </c:forEach>
     </tbody>
   </table>
-  
+  	
+  	<a href="/student/session/${student.id}">ss</a>
+  	
 </div>
 
 

@@ -35,7 +35,7 @@
 
         <!--Grid column-->
         <div class="col-md-9 mb-md-0 mb-5">
-            <form action="/email/${tutor.email }" method="POST">
+            <form action="/student/email/${tutor.id }" method="POST">
         		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                 <!--Grid row-->

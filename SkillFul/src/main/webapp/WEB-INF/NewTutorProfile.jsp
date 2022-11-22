@@ -76,8 +76,8 @@
 			<c:if test="${tutorProfile.online == true}">
 				<p class="online">Offers Online lessons</p>
 			</c:if>
-			<a href="/send/email/${tutorProfile.tutor.id}" class="btn btn-dark">Contact</a>
-			<a href="/send/email" class="btn btn-dark">Book</a>
+			<a href="/student/send/email/${tutorProfile.tutor.id }" class="btn btn-dark">Contact</a>
+			<a href="/student/session/new/${tutorProfile.tutor.id }" class="btn btn-dark">Book</a>
     	</div>
     </main>
 </body>

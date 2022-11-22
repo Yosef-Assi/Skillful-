@@ -42,7 +42,7 @@ public class TutorController {
     		Long loggedTutorId = (Long) session.getAttribute("tutorId");
     		Tutor thisTutor =	tutorService.findTutorById(loggedTutorId);
     		session.setAttribute("thisTutor", thisTutor);
-        	return "redirect:/welcome";
+        	return "redirect:/tutor/profile/create";
         }
 
     }
@@ -67,8 +67,11 @@ public class TutorController {
     		Long loggedTutorId = (Long) session.getAttribute("tutorId");
     		Tutor thisTutor =	tutorService.findTutorById(loggedTutorId);
     		session.setAttribute("thisTutor", thisTutor);
+    		session.getAttribute("prof");
+    		
+            return "redirect:/tutor/profile/"+thisTutor.getTutorProfile().getId();
+
         }
-        return "redirect:/welcome";
     }
     
     @GetMapping("/logout")

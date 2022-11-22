@@ -42,7 +42,7 @@ public class StudentController {
     		Student thisStudent =	studentService.findStudentById(loggedStudentId);
     		session.setAttribute("thisStudent", thisStudent);
     		
-        	return "redirect:/student/welcome";
+        	return "redirect:/student/login";
         }
     }
     
@@ -69,7 +69,7 @@ public class StudentController {
     		Student thisStudent =	studentService.findStudentById(loggedStudentId);
     		session.setAttribute("thisStudent", thisStudent);
         }
-        return "redirect:/student/welcome";
+        return "redirect:/dashboard";
     }
     
     @GetMapping("/student/welcome")
