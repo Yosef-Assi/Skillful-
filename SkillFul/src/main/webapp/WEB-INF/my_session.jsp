@@ -26,19 +26,22 @@
 		<table class="table table-striped">
 			<thead>
 			    <tr>
-			      <th scope="col">Name</th>
+			      <th scope="col">Tutor Name</th>
 			      <th scope="col">Start Date</th>
 			      <th scope="col">End Date</th>
-			      <th scope="col">Location / online</th>
+			      <th scope="col">Location</th>
+			      <th scope="col">Action</th>
+			      
 			    </tr>
 		    </thead>
 		    <tbody>
 		  		<c:forEach var="session" items="${mySession}">
 		  		<tr>
+		  		<td scope="row"> ${session.getTutor().firstName} </td>
 			      <td scope="row">${session.startDate} </td>
 			      <td>${session.endDate}</td>
-			      <td>${session.location}</td>
-			      <td><a href="/delete/${session.id}">Delete </a> | <a href="/sessoion/${session.id}/edit">Edit </a></td>
+			      <td>${session.getTutor().getTutorProfile().location}</td>
+			      <td><a href="/student/delete/${session.id}">Delete </a> | <a href="/student/sessoion/edit/${session.id}">Edit </a></td>
 			    </tr>
 		   		</c:forEach>
 		  	</tbody>

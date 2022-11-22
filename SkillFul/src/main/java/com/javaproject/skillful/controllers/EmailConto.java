@@ -34,17 +34,20 @@ public class EmailConto {
 	@Autowired
 	SubjectService subjectService;
 	
-	@GetMapping("/send/email/{id}")
+	@GetMapping("/student/send/email/{id}")
 	public String email(@PathVariable("id")Long id,Model model,HttpSession session) {
 		Tutor tutor = tutorService.findTutorById(id);
 		model.addAttribute("tutor", tutor);
 		session.setAttribute("mail", tutor.getId());
 		return "Email.jsp";
 	}
-	@PostMapping("/email/{mail}")
-	public String sendEmail(@RequestParam("subject") String subject,@RequestParam("message") String message,@PathVariable("mail")String mail,HttpSession session) {
-		senderService.sendSimpleEmail(mail,subject,message);
+	@PostMapping("/student/email/{id}")
+	public String sendEmail(@RequestParam("subject") String subject,@RequestParam("message") String message,@PathVariable("id")Long id,HttpSession session) {
 		Long is =(Long) session.getAttribute("mail");
+
+		Tutor tutor = tutorService.findTutorById(is);
+
+		senderService.sendSimpleEmail(tutor.getEmail(),subject,message);
 		return "redirect:/send/email/"+is;
 	}
 	

@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.javaproject.skillful.models.Subject;
+import com.javaproject.skillful.models.Student;
 import com.javaproject.skillful.models.TutorProfile;
 import com.javaproject.skillful.models.TutorProfileSubjects;
 import com.javaproject.skillful.services.ProfileSubjectService;
+import com.javaproject.skillful.services.StudentService;
 import com.javaproject.skillful.services.SubjectService;
 import com.javaproject.skillful.services.TestServ;
 import com.javaproject.skillful.services.TutorProfileService;
@@ -36,10 +38,24 @@ public class HomeContr {
 	
 	@Autowired
 	ProfileSubjectService ProfileSubjectService;
+	@Autowired
+	StudentService studentServ;
+	
+	
+	
+	@GetMapping("/dashboard")
+	public String search(Model model,HttpSession session) {
+	Student student =studentServ.findStudentById( (Long) session.getAttribute("studentId"));
+		model.addAttribute("student", student);
+		return "filter.jsp";
+	}
+	
 	
 	@PostMapping("/search")
-	public String dashboard(@RequestParam("search") String search,@RequestParam("location") String location,@RequestParam("level") String level,Model model) {
+	public String dashboard(@RequestParam("search") String search,@RequestParam("location") String location,@RequestParam("level") String level,Model model,RedirectAttributes redirectAttributes) {
 			
+		try {
+		
 			if(location.contains("None") && level.contains("All")) {
 			
 			return "redirect:/search/"+search;
@@ -50,17 +66,30 @@ public class HomeContr {
 				return "redirect:/search/"+search+"/"+location;
 
 			}
-			else if (location.contains("None") && !level.contains("All")){
+			else if (location.contains("None") && !level.contains("All") && search != ""){
 				return "redirect:/search/level/"+search+"/"+level;
 
 			}
-			else if (!location.contains("None") && !level.contains("All")) {
+			else if (!location.contains("None") && !level.contains("All") && search != "") {
 				return "redirect:/search/location/"+search+"/"+location+"/"+level;
 
 			}
-			return "redirect:/search/";
+			else if (search == "" && !level.contains("All")) {
+				return "redirect:/dashboard";
 
-	
+			}
+			else if (search == "" && !location.contains("None")) {
+				return "redirect:/dashboard";
+
+			}
+			
+
+		} 
+		catch(Exception e) {
+			System.out.println("sss");
+		}
+		return "redirect:/dashboard";
+		
 	}
 	@GetMapping("/search/{search}")
 	public String search(@PathVariable("search") String search, Model model) {
