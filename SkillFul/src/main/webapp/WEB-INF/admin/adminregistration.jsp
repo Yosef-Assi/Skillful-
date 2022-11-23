@@ -7,24 +7,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Admin Registration Page</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/loginreg.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Admin Registration</h1>
-    
-    <p><form:errors path="user.*"/></p>
-    
-    <form:form method="POST" action="/registration" modelAttribute="user">
-
-            <form:label path="username">Username:</form:label>
-            <form:input path="username"/>  
-                     
-            <form:label path="password">Password:</form:label>
-            <form:password path="password"/>
-
-            <form:label path="passwordConfirmation">Confirm Password:</form:label>
-            <form:password path="passwordConfirmation"/>
-
-        	<input type="submit" value="Register"/>
-    </form:form>
+	<div class="container my-5 login-reg p-5">
+		<h1 class="text-center">Admin Registration</h1>
+		<p class="text-danger small"><form:errors path="user.*"/></p>
+		<form:form method="POST" action="/registration" modelAttribute="user">
+			<div class="mb-3">
+				<form:label path="username" class="form-label">Username:</form:label>
+				<form:input path="username" class="form-control"/> 
+			</div>
+			
+			<div class="mb-3">
+				<form:label path="password" class="form-label">Password:</form:label>
+				<form:password path="password" class="form-control"/>
+			</div>
+			
+			<div class="mb-3">
+				<form:label path="passwordConfirmation" class="form-label">Confirm Password:</form:label>
+				<form:password path="passwordConfirmation" class="form-control"/>
+			</div>
+			
+			 <div class="d-grid gap-2">
+             	<input type="submit" value="Register" class="btn btn-dark btn-lg shadow-sm rounded mt-3">
+             </div>
+		</form:form>
+	</div>
 </body>
 </html>
