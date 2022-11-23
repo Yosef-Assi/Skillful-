@@ -76,7 +76,7 @@ https://templatemo.com/tm-569-edu-meeting
               <p>This is a skill training website, help you to improve yourself in your favorite skill.</p>
               <p>Invest in yourself now!.</p>
               <div class="main-button-red">
-                  <div class="scroll-to-section"><a href="/">Join Us Now!</a></div>
+                  <div class="scroll-to-section"><a href="/student/register">Join Us Now!</a></div>
               </div>
           </div>
               </div>
@@ -143,7 +143,7 @@ https://templatemo.com/tm-569-edu-meeting
                 <h3>Are you interested in teaching?</h3>
                 <p>You are welcome to present your experience by teaching many students, whether in face-to-face meetings or online meetings.</p>
                 <div class="main-button-red">
-                  <div class="scroll-to-section"><a href="/">Join Us Now!</a></div>
+                  <div class="scroll-to-section"><a href="/tutor/register">Join Us Now!</a></div>
               </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ https://templatemo.com/tm-569-edu-meeting
                 <p>Invest in yourself by learning many skills that will help you in your career.
 				Develop your skills now.</p>
                 <div class="main-button-yellow">
-                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                  <div class="scroll-to-section"><a href="/student/register">Join Us Now!</a></div>
               </div>
               </div>
             </div>
