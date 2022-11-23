@@ -50,11 +50,11 @@ public class HomeContr {
 		return "filter.jsp";
 	}
 
-//	@GetMapping("/")
-//	public String searcPh() {
-//	
-//		return "home.jsp";
-//	}
+	@GetMapping("/home2")
+	public String searcPh() {
+	
+		return "home.jsp";
+	}
 	
 	
 	@PostMapping("/search")
