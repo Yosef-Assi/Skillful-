@@ -2,17 +2,23 @@ package com.javaproject.skillful.controllers;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaproject.skillful.models.User;
+import com.javaproject.skillful.services.StudentService;
+import com.javaproject.skillful.services.TutorService;
 import com.javaproject.skillful.services.UserService;
 import com.javaproject.skillful.validator.UserValidator;
 
@@ -23,6 +29,11 @@ public class UserController {
     
     private UserService userService;
     
+    @Autowired
+    StudentService studentService;
+    
+    @Autowired
+    TutorService tutorService;
     public UserController(UserService userService, UserValidator userValidator) {
         this.userService = userService;
         this.userValidator = userValidator;
@@ -64,11 +75,24 @@ public class UserController {
     }
     
     
-    @RequestMapping(value ="/home")
+    @RequestMapping(value ={"/", "/home"})
     public String home(Principal principal, Model model) {
 
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
+        model.addAttribute("students", studentService.findAll());
+        model.addAttribute("tutors", tutorService.findAll());
+
         return "/admin/adminHomePage.jsp";
+    }
+    @GetMapping("/delete/student/{id}")
+    public String deleteStudent(@PathVariable("id") Long id, HttpSession session) {
+    	studentService.deleteStudent(id);
+			return "redirect:/home";
+    }
+    @GetMapping("/delete/tutor/{id}")
+    public String deleteTutor(@PathVariable("id") Long id, HttpSession session) {
+    	tutorService.deleteTutor(id);
+			return "redirect:/home";
     }
 }

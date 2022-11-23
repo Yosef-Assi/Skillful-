@@ -43,7 +43,7 @@
     </nav>
 	<main class="container">
 		<h1 class="text-center mt-4">Book a Session</h1>
-		<h5 class="my-3">Tutor: <c:out value="${tutors.tutor.firstName}"></c:out> <c:out value="${tutors.tutor.lastName}"></c:out></h5>
+		<h5 class="my-3">Tutor: <c:out value="${tutors.firstName}"></c:out> <c:out value="${tutors.lastName}"></c:out></h5>
 		<form:form action="/student/session/new" method="post" modelAttribute="newSession">
 			<div class="mb-3">
 			<form:errors path="startDate" class="fw-bold text-danger d-block"/>
