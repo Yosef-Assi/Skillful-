@@ -1,5 +1,6 @@
 package com.javaproject.skillful.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -65,4 +66,10 @@ public class StudentService {
     		return null ;
     	}
     }
+    public List<Student> findAll() {
+    	return studentRepo.findAll();
+    }
+    public void deleteStudent(Long id) {
+    	studentRepo.deleteById(id);
+	}
 }

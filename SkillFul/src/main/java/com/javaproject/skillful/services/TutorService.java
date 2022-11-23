@@ -1,5 +1,6 @@
 package com.javaproject.skillful.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.javaproject.skillful.models.LoginTutor;
+import com.javaproject.skillful.models.Student;
 import com.javaproject.skillful.models.Tutor;
 import com.javaproject.skillful.repositories.TutorRepository;
 
@@ -69,4 +71,10 @@ public class TutorService {
     		return null ;
     	}
     }
+    public List<Tutor> findAll() {
+    	return tutorRepo.findAll();
+    }
+    public void deleteTutor(Long id) {
+    	tutorRepo.deleteById(id);
+	}
 }
