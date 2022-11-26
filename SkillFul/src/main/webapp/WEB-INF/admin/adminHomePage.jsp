@@ -28,12 +28,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="/skillful">Home</a>
                     </li>
-               
-                    <li class="nav-item">
-                        <a class="nav-link" href="/student/session/${student.id }">Add Skill</a>
-                    </li>
+
                 </ul>
                     <a href="/logout" class="logout">Logout</a>
             </div>
@@ -44,60 +41,14 @@
 		<div class="d-flex justify-content-between align-items-center my-3">
 			<div>
 			  <h1>Welcome, <c:out value="${currentUser.username}"></c:out>!</h1>
-			  <br>
-			
+				
+				<a href="/admin">Go to admin dashboard</a>
 			</div>
 			
 		</div>
-		<table class="table table-striped">
-		  <h2>All Students</h2>
-			<thead>
-			    <tr>
-			      <th scope="col">Student ID</th>
-			      <th scope="col">Student First Name</th>
-			      <th scope="col">Student Last Name</th>
-			      <th scope="col">Student Email</th>
-			    <!--   <th scope="col">Action</th> -->
-			      
-			    </tr>
-		    </thead>
-		    <tbody>
-		  		 <c:forEach var="student" items="${students}">
-		  		<tr>
-		  			<td scope="row"> ${student.id} </td>
-			      <td scope="row">${student.firstName} </td>
-			      <td>${student.lastName}</td>
-			      <td>${student.email}</td>
-			      <%-- <td><a href="/delete/student/${student.id}">Delete </a></td> --%>
-			    </tr>
-		   		</c:forEach> 
-		  	</tbody>
-		  </table>
-		  <br>
-		  <table class="table table-striped">
-		  <h2>All Tutors</h2>
-			<thead>
-			    <tr>
-			      <th scope="col">Tutor ID</th>
-			      <th scope="col">Tutor First Name</th>
-			      <th scope="col">Tutor Last Name</th>
-			      <th scope="col">Tutor Email</th>
-<!-- 			      <th scope="col">Action</th>
- -->			      
-			    </tr>
-		    </thead>
-		    <tbody>
-		  		 <c:forEach var="tutor" items="${tutors}">
-		  		<tr>
-		  			<td scope="row"> ${tutor.id} </td>
-			      <td scope="row">${tutor.firstName} </td>
-			      <td>${tutor.lastName}</td>
-			      <td>${tutor.email}</td>
-			     <%--  <td><a href="/delete/tutor/${tutor.id}">Delete </a></td> --%>
-			    </tr>
-		   		</c:forEach> 
-		  	</tbody>
-		  </table>
+		
+		
+		
 	 </div>
   
     

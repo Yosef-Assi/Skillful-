@@ -74,11 +74,7 @@ public class TutorController {
         }
     }
     
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-    	session.invalidate();
-    	return "redirect:/";
-    }
+  
     
     
     @GetMapping("/welcome")
@@ -90,4 +86,12 @@ public class TutorController {
     		return "redirect:/";
     	}
     }
+    @GetMapping("/tutor/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("tutorId");
+		session.removeAttribute("thisTutor");
+
+		return "redirect:/skillful";
+		
+	}
 }

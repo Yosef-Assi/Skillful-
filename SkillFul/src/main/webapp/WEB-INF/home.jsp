@@ -45,9 +45,8 @@ https://templatemo.com/tm-569-edu-meeting
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
-                          <li class="scroll-to-section"><a href="#top">Home</a></li>
-                          <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
-                          <li class="scroll-to-section"><a href="">Login</a></li> 
+                          <li><a href="/tutor/login">Login as Tutor</a></li>
+                          <li><a href="/student/login">Login as Student</a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>

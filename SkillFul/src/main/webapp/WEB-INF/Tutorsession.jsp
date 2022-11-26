@@ -4,6 +4,8 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>  
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="/skillful">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/tutor/profile/${tutorsessions.getTutorProfile().getId()}">Profile</a>
@@ -38,7 +40,7 @@
                         <a class="nav-link" href="/tutor/session/${tutorsessions.id }">My Sessions</a>
                     </li>
                 </ul>
-                    <a href="/logout" class="logout">Logout</a>
+                    <a href="/tutor/logout" class="logout">Logout</a>
             </div>
         </div>
     </nav>
@@ -64,8 +66,8 @@
 		  		<c:forEach var="session" items="${mySession}">
 		  		<tr>
 		  		<td scope="row"> ${session.student.firstName} </td>
-			      <td scope="row">${session.startDate} </td>
-			      <td>${session.endDate}</td>
+			      <td scope="row"><fmt:formatDate type="both"  pattern="dd MMMMM, yyyy" value="${session.startDate}"/> </td>
+			      <td><fmt:formatDate type="both"  pattern="dd MMMMM, yyyy" value="${session.endDate}"/></td>
 			      <td>${session.getTutor().getTutorProfile().location}</td>
 			      <td><a href="/tutor/delete/${session.id}">Delete</a></td>
 			    </tr>
