@@ -42,7 +42,7 @@
                         <a class="nav-link" href="/student/session/${student.id }">My Sessions</a>
                     </li>
                 </ul>
-                    <a href="/logout" class="logout">Logout</a>
+                    <a href="/student/logout" class="logout">Logout</a>
             </div>
         </div>
     </nav>
@@ -95,7 +95,6 @@
 	            </div>
 		    </c:forEach>
 		</div>
-	  	<a href="/student/session/${thisStudent.id}">ss</a>
     </main>	
 </body>
 </html>

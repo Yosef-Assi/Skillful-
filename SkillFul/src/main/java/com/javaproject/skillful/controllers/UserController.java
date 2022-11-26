@@ -71,6 +71,9 @@ public class UserController {
     public String adminPage(Principal principal, Model model) {
     	String username = principal.getName();
     	model.addAttribute("currentUser", userService.findByUsername(username));
+    	   model.addAttribute("currentUser", userService.findByUsername(username));
+           model.addAttribute("students", studentService.findAll());
+           model.addAttribute("tutors", tutorService.findAll());
     	return "/admin/adminPage.jsp";
     }
     

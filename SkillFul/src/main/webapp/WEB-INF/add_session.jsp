@@ -37,7 +37,7 @@
                         <a class="nav-link" href="#">My Sessions</a>
                     </li>
                 </ul>
-                    <a href="/logout" class="logout">Logout</a>
+                    <a href="/student/logout" class="logout">Logout</a>
             </div>
         </div>
     </nav>

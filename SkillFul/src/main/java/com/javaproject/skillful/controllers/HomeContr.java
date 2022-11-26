@@ -50,7 +50,7 @@ public class HomeContr {
 		return "filter.jsp";
 	}
 
-	@GetMapping("/home2")
+	@GetMapping("/skillful")
 	public String searcPh() {
 	
 		return "home.jsp";
@@ -150,6 +150,14 @@ public class HomeContr {
 		model.addAttribute("profileSubjects", ProfileSubjectService.tutorSubjects(tutorProfile));
 		model.addAttribute("tutorProfile", profileService.findProfileById(profileId));
 		return "NewTutorProfile.jsp";
+	}
+	@GetMapping("/student/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("thisStudent");
+		session.removeAttribute("studentId");
+
+		return "redirect:/skillful";
+		
 	}
 }
 
